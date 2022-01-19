@@ -107,13 +107,13 @@ async def create_transaction(request: Request, item = Body({})):
     }
 
 
-class StorRpcParams(BaseModel):
+class PecanRollsRpcParams(BaseModel):
     method: str
     params: Optional[Dict] = None
 
 
 @router.post('/rolls_rpc')
-async def full_node_rpc(request: Request, item: StorRpcParams):
+async def full_node_rpc(request: Request, item: PecanRollsRpcParams):
     # todo: limit method and add cache
     full_node_client = request.app.state.client
     async with full_node_client.session.post(full_node_client.url + item.method, json=item.params, ssl_context=full_node_client.ssl_context) as response:
