@@ -112,7 +112,7 @@ class StorRpcParams(BaseModel):
     params: Optional[Dict] = None
 
 
-@router.post('/stor_rpc')
+@router.post('/rolls_rpc')
 async def full_node_rpc(request: Request, item: StorRpcParams):
     # todo: limit method and add cache
     full_node_client = request.app.state.client
@@ -142,12 +142,12 @@ async def query_balance(address, request: Request):
 
 DEFAULT_TOKEN_LIST = [
     {
-        'chain': 'stor',
-        'id': 'stor',
+        'chain': 'rolls',
+        'id': 'rolls',
         'name': 'ROLLS',
         'symbol': 'ROLLS',
         'decimals': 12,
-        'logo_url': 'https://storwallet.com/files/ROLLS_icon_32.svg',
+        'logo_url': 'https://pecanrolls.net/images/rolls-spinning-512.gif',
         'is_verified': True,
         'is_core': True,
     },
