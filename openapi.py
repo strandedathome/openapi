@@ -9,7 +9,7 @@ from aiocache import caches, cached
 from pydantic import BaseModel
 from rolls.rpc.full_node_rpc_client import FullNodeRpcClient
 from rolls.util.bech32m import encode_puzzle_hash, decode_puzzle_hash as inner_decode_puzzle_hash
-from rolls.types.spend_bundle import SpendBundle
+from rolls.types.coin_spend import CoinSpend
 from rolls.types.blockchain_format.program import Program
 import config as settings
 
@@ -92,7 +92,7 @@ async def get_utxos(address: str, request: Request):
 
 @router.post("/sendtx")
 async def create_transaction(request: Request, item = Body({})):
-    spb = SpendBundle.from_json_dict(item['spend_bundle'])
+    spb = CoinSpend.from_json_dict(item['coin_spend'])
     full_node_client = request.app.state.client
     
     try:
