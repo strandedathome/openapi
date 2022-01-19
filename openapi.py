@@ -7,10 +7,10 @@ from fastapi import FastAPI, APIRouter, Request, Body, Depends, HTTPException
 from fastapi.responses import JSONResponse
 from aiocache import caches, cached
 from pydantic import BaseModel
-from stor.rpc.full_node_rpc_client import FullNodeRpcClient
-from stor.util.bech32m import encode_puzzle_hash, decode_puzzle_hash as inner_decode_puzzle_hash
-from stor.types.spend_bundle import SpendBundle
-from stor.types.blockchain_format.program import Program
+from rolls.rpc.full_node_rpc_client import FullNodeRpcClient
+from rolls.util.bech32m import encode_puzzle_hash, decode_puzzle_hash as inner_decode_puzzle_hash
+from rolls.types.spend_bundle import SpendBundle
+from rolls.types.blockchain_format.program import Program
 import config as settings
 
 caches.set_config(settings.CACHE_CONFIG)
@@ -29,8 +29,8 @@ logzero.logfile(os.path.join(log_dir, "api.log"))
 
 
 async def get_full_node_client() -> FullNodeRpcClient:
-    config = settings.STOR_CONFIG
-    full_node_client = await FullNodeRpcClient.create(config['self_hostname'], config['full_node']['rpc_port'], settings.STOR_ROOT_PATH, settings.STOR_CONFIG)
+    config = settings.ROLLS_CONFIG
+    full_node_client = await FullNodeRpcClient.create(config['self_hostname'], config['full_node']['rpc_port'], settings.ROLLS_ROOT_PATH, settings.ROLLS_CONFIG)
     return full_node_client
 
 
@@ -144,10 +144,10 @@ DEFAULT_TOKEN_LIST = [
     {
         'chain': 'stor',
         'id': 'stor',
-        'name': 'STOR',
-        'symbol': 'STOR',
+        'name': 'ROLLS',
+        'symbol': 'ROLLS',
         'decimals': 12,
-        'logo_url': 'https://storwallet.com/files/STOR_icon_32.svg',
+        'logo_url': 'https://storwallet.com/files/ROLLS_icon_32.svg',
         'is_verified': True,
         'is_core': True,
     },

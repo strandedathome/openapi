@@ -1,5 +1,5 @@
-from stor.util.default_root import DEFAULT_ROOT_PATH
-from stor.util.config import load_config
+from rolls.util.default_root import DEFAULT_ROOT_PATH
+from rolls.util.config import load_config
 
 CACHE_CONFIG = {
     'default': {
@@ -15,5 +15,5 @@ CACHE_CONFIG = {
 }
 
 
-STOR_ROOT_PATH = DEFAULT_ROOT_PATH
-STOR_CONFIG = load_config(STOR_ROOT_PATH, "config.yaml")
+ROLLS_ROOT_PATH = DEFAULT_ROOT_PATH
+ROLLS_CONFIG = load_config(ROLLS_ROOT_PATH, "config.yaml")
